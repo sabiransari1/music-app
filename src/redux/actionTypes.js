@@ -1,0 +1,9 @@
+// LOGIN
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+// MUSIC
+export const MUSIC_REQUEST = "MUSIC_REQUEST";
+export const MUSIC_FAILURE = "MUSIC_FAILURE";
+export const GET_MUSIC_SUCCESS = "GET_MUSIC_SUCCESS";
