@@ -1,11 +1,11 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actionTypes";
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from '../actionTypes';
 
 const initState = {
   isLoading: false,
   isError: false,
   isAuth: false,
-  token: "",
-  errMessage: "",
+  token: '',
+  errMessage: '',
 };
 
 export const authentication = (state = initState, { type, payload }) => {
@@ -14,10 +14,22 @@ export const authentication = (state = initState, { type, payload }) => {
       return { ...state, isLoading: true, isError: false };
     }
     case LOGIN_SUCCESS: {
-      return { ...state, isLoading: false, isAuth: true, token: payload };
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        isAuth: true,
+        token: payload,
+      };
     }
     case LOGIN_FAILURE: {
-      return { ...state, isLoading: false, isError: true, errMessage: payload };
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: false,
+        isError: true,
+        errMessage: payload,
+      };
     }
     default:
       return state;

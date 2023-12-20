@@ -2,12 +2,12 @@ import {
   GET_MUSIC_SUCCESS,
   MUSIC_FAILURE,
   MUSIC_REQUEST,
-} from "../actionTypes";
+} from '../actionTypes';
 
 const initState = {
   isLoading: false,
   isError: false,
-  errMessage: "",
+  errMessage: '',
   albums: new Array(),
 };
 
@@ -20,7 +20,11 @@ export const music = (state = initState, { type, payload }) => {
       return { ...state, isLoading: false, isError: true, errMessage: payload };
     }
     case GET_MUSIC_SUCCESS: {
-      return { ...state, isLoading: false, albums: payload };
+      return {
+        ...state,
+        isLoading: false,
+        albums: [...state.albums, ...payload],
+      };
     }
     default:
       return state;

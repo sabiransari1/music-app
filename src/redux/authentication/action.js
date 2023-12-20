@@ -1,23 +1,15 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actionTypes";
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from '../actionTypes';
+import axios from 'axios';
 
-export const loginRequestAction = () => {
-  return { type: LOGIN_REQUEST };
-};
-
-export const loginSuccessAction = (payload) => {
-  return { type: LOGIN_SUCCESS, payload };
-};
-
-export const loginFailureAction = (payload) => {
-  return { type: LOGIN_FAILURE, payload };
-};
-
-export const login = (queryParams) => async (dispatch) => {
+export const login = (queryParams, toast) => async (dispatch) => {
   try {
-    dispatch(loginRequestAction());
-    const res = await axios.get(`https://reqres.in/api/login`, queryParams);
-    dispatch(loginSuccessAction(res.data.token));
+    dispatch({ type: LOGIN_REQUEST });
+    const res = await axios.post(`https://reqres.in/api/login`, queryParams);
+
+    dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
+
+    return res.status;
   } catch (err) {
-    dispatch(loginFailureAction(err.message));
+    dispatch({ type: LOGIN_FAILURE, payload: err.message });
   }
 };

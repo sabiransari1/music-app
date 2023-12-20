@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -12,11 +12,12 @@ import {
   useColorMode,
   useDisclosure,
   Text,
-} from "@chakra-ui/react";
-import logoDark from "../assets/images/logoDark.png";
-import logoLight from "../assets/images/logoLight.png";
-import { FaSun, FaMoon } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+  Heading,
+} from '@chakra-ui/react';
+import logoDark from '../assets/images/logoDark.png';
+import logoLight from '../assets/images/logoLight.png';
+import { FaSun, FaMoon } from 'react-icons/fa';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -24,44 +25,45 @@ export const Navbar = () => {
 
   return (
     <Flex
-      minH={"80px"}
-      align={"center"}
-      justify={"space-between"}
-      pos={"sticky"}
-      top={"0"}
+      minH={'8vh'}
+      align={'center'}
+      justify={'space-between'}
+      pos={'sticky'}
+      top={'0'}
       boxShadow={
-        "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset"
+        'rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset'
       }
-      p={"0 3rem"}
-      zIndex={"1"}
+      p={'0 3rem'}
+      zIndex={'1'}
+      bg={'#a0caba'}
     >
       {/* first */}
-      <Box display={"none"} border={"1px solid red"}>
-        <IconButton icon={<GiHamburgerMenu />} size={"sm"} onClick={onOpen} />
+      <Box display={'none'} border={'1px solid red'}>
+        <IconButton icon={<GiHamburgerMenu />} size={'sm'} onClick={onOpen} />
 
-        <Drawer placement={"top"} onClose={onClose} isOpen={isOpen}>
+        <Drawer placement={'top'} onClose={onClose} isOpen={isOpen}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerBody
               p={{
-                base: "1rem 1rem",
-                sm: "1rem 1rem",
-                md: "2rem 2rem",
-                lg: "2rem 5rem",
-                xl: "2rem 5rem",
-                "2xl": "2rem 5rem",
+                base: '1rem 1rem',
+                sm: '1rem 1rem',
+                md: '2rem 2rem',
+                lg: '2rem 5rem',
+                xl: '2rem 5rem',
+                '2xl': '2rem 5rem',
               }}
-              bg={colorMode === "light" ? "white" : "black"}
+              bg={'#a0caba'}
             >
-              <Link to={"/"} onClick={onClose}>
+              <Link to={'/'} onClick={onClose}>
                 <Text>Home</Text>
               </Link>
 
-              <Link to={"/admin"} onClick={onClose}>
+              <Link to={'/admin'} onClick={onClose}>
                 <Text>Admin</Text>
               </Link>
 
-              <Link to={"/login"} onClick={onClose}>
+              <Link to={'/login'} onClick={onClose}>
                 <Text>Login</Text>
               </Link>
             </DrawerBody>
@@ -70,38 +72,30 @@ export const Navbar = () => {
       </Box>
 
       {/* second */}
-      <Box w={"5%"}>
-        <Image
-          src={colorMode === "light" ? logoLight : logoDark}
-          alt="Logo"
-          w={"100%"}
-        />
+      <Box w={'7%'}>
+        <Link to={'/'}>
+          <Image
+            src={colorMode === 'light' ? logoLight : logoDark}
+            alt="Logo"
+            w={'100%'}
+          />
+        </Link>
       </Box>
 
       {/* third */}
-      <Flex w={"50%"} justify={"space-between"}>
-        <Link to={"/"}>
-          <Text>Home</Text>
+      <Flex w={'50%'} justify={'space-between'}>
+        <Link to={'/'}>
+          <Heading size={'0rem'}>Home</Heading>
         </Link>
 
-        <Link to={"/admin"}>
-          <Text>Admin</Text>
+        <Link to={'/admin'}>
+          <Heading size={'0rem'}>Admin</Heading>
         </Link>
 
-        <Link to={"/login"}>
-          <Text>Login</Text>
+        <Link to={'/login'}>
+          <Heading size={'0rem'}>Login</Heading>
         </Link>
       </Flex>
-
-      {/* fifth */}
-      <Box>
-        <IconButton
-          icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-          isRound
-          size={"sm"}
-          onClick={toggleColorMode}
-        />
-      </Box>
     </Flex>
   );
 };
